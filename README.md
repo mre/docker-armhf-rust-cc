@@ -12,6 +12,9 @@ Tested on Mac OSX compiling a binary for Raspberry Pi 2.
 ```
 cd /path/to/your/cargo/project
 docker build --no-cache -t mre0/armhf-rust-cc .
-# Extract the cargo target folder from the container
-./extractbin.sh
+# To extract the cargo target folder from the container
+# you can create a shell script from these commands:
+containerID=$(docker run --detach mre0/armhf-rust-cc)
+docker cp $containerID:/project/target target
+docker rm $containerID
 ```
